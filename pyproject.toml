@@ -29,6 +29,10 @@ classifiers = [
 dependencies = []
 requires-python = ">= 3.10"
 
+[project.urls]
+Repository = "https://github.com/nbuchwitz/usb-meter"
+Issues = "https://github.com/nbuchwitz/usb-meter/issues"
+
 [project.optional-dependencies]
 dev = ["ruff", "mypy"]
 test = ["pytest"]

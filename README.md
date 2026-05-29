@@ -5,6 +5,9 @@ SPDX-License-Identifier: LGPL-2.1-or-later
 
 # usb-meter
 
+[![License: LGPL v2.1+](https://img.shields.io/badge/License-LGPL_v2.1+-blue.svg)](https://www.gnu.org/licenses/lgpl-2.1)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+
 Python library for USB-C power meters. Initial support: ChargerLAB
 POWER-Z **KM003C** over its HID transport.
 
@@ -22,6 +25,14 @@ It also has no third-party dependencies.
 - `usb-meter` CLI for one-shot and streaming reads.
 
 ## Installation
+
+Directly from GitHub:
+
+```bash
+pip install git+https://github.com/nbuchwitz/usb-meter.git
+```
+
+Or from a local checkout:
 
 ```bash
 pip install .
