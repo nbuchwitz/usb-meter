@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Nicolai Buchwitz <n.buchwitz@kunbus.com>
+# SPDX-License-Identifier: LGPL-2.1-or-later
+#
+# ChargerLAB POWER-Z KM003C: grant the plugdev group read/write access
+# to the HID interface so the usb-meter library does not need root.
+# Install as /etc/udev/rules.d/60-chargerlab-km003c.rules, then run
+#   sudo udevadm control --reload && sudo udevadm trigger
+# (or replug the meter).
+
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="5fc9", ATTRS{idProduct}=="0063", \
+    GROUP="plugdev", MODE="0660", TAG+="uaccess"

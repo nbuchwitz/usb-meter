@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: 2026 Nicolai Buchwitz <n.buchwitz@kunbus.com>
+#
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "usb-meter"
+description = "Python library for USB-C power meters (ChargerLAB POWER-Z KM003C)"
+version = "0.1.0"
+readme = "README.md"
+authors = [{ name = "Nicolai Buchwitz", email = "n.buchwitz@kunbus.com" }]
+maintainers = [{ name = "Nicolai Buchwitz", email = "n.buchwitz@kunbus.com" }]
+keywords = ["usb-c", "power-meter", "chargerlab", "km003c", "power-z"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Hardware",
+]
+dependencies = []
+requires-python = ">= 3.10"
+
+[project.optional-dependencies]
+dev = ["ruff", "mypy"]
+test = ["pytest"]
+plot = ["matplotlib"]
+
+[project.scripts]
+usb-meter = "usb_meter.__main__:main"
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["usb_meter*"]
+
+[tool.ruff]
+line-length = 100
+lint.select = [
+    "ANN", # flake8-annotations
+    "B",   # flake8-bugbear
+    "D",   # pydocstyle
+    "E",   # pycodestyle
+    "F",   # Pyflakes
+    "Q",   # flake8-quotes
+]
+lint.ignore = [
+    "D203",  # incompatible with D211
+    "D213",  # incompatible with D212
+    "D107",  # undocumented-public-init
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ANN", "D"]
+"examples/*" = ["ANN", "D"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+addopts = "-v --tb=short"
