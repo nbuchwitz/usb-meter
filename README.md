@@ -5,6 +5,7 @@ SPDX-License-Identifier: LGPL-2.1-or-later
 
 # usb-meter
 
+[![Tests](https://github.com/nbuchwitz/usb-meter/actions/workflows/pytest.yml/badge.svg)](https://github.com/nbuchwitz/usb-meter/actions/workflows/pytest.yml)
 [![License: LGPL v2.1+](https://img.shields.io/badge/License-LGPL_v2.1+-blue.svg)](https://www.gnu.org/licenses/lgpl-2.1)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 

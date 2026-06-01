@@ -35,7 +35,7 @@ Issues = "https://github.com/nbuchwitz/usb-meter/issues"
 
 [project.optional-dependencies]
 dev = ["ruff", "mypy"]
-test = ["pytest"]
+test = ["pytest", "pytest-cov"]
 plot = ["matplotlib"]
 
 [project.scripts]
@@ -61,6 +61,7 @@ lint.select = [
 lint.ignore = [
     "D203",  # incompatible with D211
     "D213",  # incompatible with D212
+    "D105",  # undocumented-magic-method
     "D107",  # undocumented-public-init
 ]
 
@@ -76,3 +77,14 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_functions = "test_*"
 addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["src/usb_meter"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
