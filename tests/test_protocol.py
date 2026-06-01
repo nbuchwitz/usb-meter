@@ -10,13 +10,13 @@ from usb_meter.protocol import Attribute, Command, ExtHeader, MsgHeader, encode_
 # Real PUT_DATA + ADC frame captured from a KM003C powered at ~5 V.
 # Layout: 4-byte msg header, 4-byte ext header, 44-byte ADC payload, padding.
 CAPTURED_FRAME = bytes.fromhex(
-    "41008002"                                          # msg header
-    "0100000b"                                          # ext header
+    "41008002"  # msg header
+    "0100000b"  # ext header
     "15504e00422ff8ff7b504e00f241f8ff34524e002642f8ff"  # 6 int32 V/I fields
-    "c00e"                                              # raw temperature bytes
-    "2c00b13f7c035c04497c"                              # VCC1 VCC2 VDP VDM VDD
-    "00805c0659006f00"                                  # rate/n + reserved
-    "0000000000000000000000000000"                      # padding to 64 bytes
+    "c00e"  # raw temperature bytes
+    "2c00b13f7c035c04497c"  # VCC1 VCC2 VDP VDM VDD
+    "00805c0659006f00"  # rate/n + reserved
+    "0000000000000000000000000000"  # padding to 64 bytes
 )
 
 
@@ -46,7 +46,7 @@ def test_unpack_known_ext_header():
 
 
 def test_decode_known_adc_payload():
-    payload = CAPTURED_FRAME[8:8 + 44]
+    payload = CAPTURED_FRAME[8 : 8 + 44]
     sample = AdcSample.from_payload(payload)
     # Values cross-checked against the kernel `powerz` hwmon driver at
     # the same moment on the same device.

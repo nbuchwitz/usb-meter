@@ -29,6 +29,7 @@ from .protocol import (
 
 CHARGERLAB_USB_VENDOR_ID = 0x5FC9
 
+
 # Two-byte raw temperature -> millidegrees Celsius, per the upstream Linux
 # `powerz` driver. The vendor docx oversimplifies this field to int16.
 def _decode_temperature_c(t_lo: int, t_hi: int) -> float:
@@ -61,9 +62,7 @@ class AdcSample:
         """Parse a 44-byte ADC payload (header stripped) into an AdcSample."""
         if len(payload) < 36:
             raise ValueError(f"ADC payload too short: {len(payload)} bytes")
-        vbus, ibus, vbus_avg, ibus_avg, vbus_ori, ibus_ori = struct.unpack_from(
-            "<6i", payload, 0
-        )
+        vbus, ibus, vbus_avg, ibus_avg, vbus_ori, ibus_ori = struct.unpack_from("<6i", payload, 0)
         t_lo, t_hi = payload[24], payload[25]
         vcc1, vcc2, vdp, vdm, vdd = struct.unpack_from("<5H", payload, 26)
         return cls(
@@ -163,8 +162,7 @@ class KM003C(UsbMeter):
         devices = cls.list()
         if not devices:
             raise MeterNotFoundError(
-                f"No {cls.__name__} found "
-                f"(USB {cls.USB_VENDOR_ID:04x}:{cls.USB_PRODUCT_ID:04x})"
+                f"No {cls.__name__} found (USB {cls.USB_VENDOR_ID:04x}:{cls.USB_PRODUCT_ID:04x})"
             )
         if serial is None:
             chosen = devices[0]
@@ -173,8 +171,7 @@ class KM003C(UsbMeter):
             if chosen is None:
                 available = ", ".join(repr(d.serial) for d in devices)
                 raise MeterNotFoundError(
-                    f"No {cls.__name__} with serial {serial!r} "
-                    f"(available: {available})"
+                    f"No {cls.__name__} with serial {serial!r} (available: {available})"
                 )
         return cls(ConnectionHID(chosen.path))
 

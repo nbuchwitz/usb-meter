@@ -41,32 +41,46 @@ def main() -> int:
         description="Read ADC samples from a ChargerLAB POWER-Z KM003C.",
     )
     parser.add_argument(
-        "-n", "--count", type=int, default=1,
+        "-n",
+        "--count",
+        type=int,
+        default=1,
         help="number of samples to print (0 = run forever; default: 1)",
     )
     parser.add_argument(
-        "-i", "--interval", type=float, default=0.1,
+        "-i",
+        "--interval",
+        type=float,
+        default=0.1,
         help="seconds between samples (default: 0.1)",
     )
     selector = parser.add_mutually_exclusive_group()
     selector.add_argument(
-        "-s", "--serial",
+        "-s",
+        "--serial",
         help="USB serial of the meter to open (see --list)",
     )
     selector.add_argument(
-        "-p", "--path",
+        "-p",
+        "--path",
         help="explicit /dev/hidraw* path to open",
     )
     parser.add_argument(
-        "-l", "--list", action="store_true",
+        "-l",
+        "--list",
+        action="store_true",
         help="enumerate attached meters and exit",
     )
     parser.add_argument(
-        "-o", "--csv", metavar="FILE",
+        "-o",
+        "--csv",
+        metavar="FILE",
         help="append samples to this CSV file (writes header on creation)",
     )
     parser.add_argument(
-        "-q", "--quiet", action="store_true",
+        "-q",
+        "--quiet",
+        action="store_true",
         help="suppress stdout output (use with --csv for headless logging)",
     )
     args = parser.parse_args()
